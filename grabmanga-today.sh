@@ -44,7 +44,6 @@ while [ $pg -le $mx ]; do
 	pgg="p_"$pgg".jpg"
 	echo "grabbing page "$pg" of "$mx" for chapter "$ch", saving to "$path$chg"/"$pgg"..."
 	full=$path$chg"/"$pgg
-	echo $bse$ch"/"$pgg
 	curl --silent $bse$ch"/"$pgg > "$full"
 	((pg+=1))
 done
