@@ -42,8 +42,15 @@ fi
 ((ch+=1))
 mx=$(wc -l /tmp/manga2 | cut -f1 -d" ")
 if [ $mx -eq 0 ]; then
-	echo "error: chapter number "$2" for given manga does not exist. exiting"
-	exit
+	if [ "$ext" = "jpg" ]; then
+		echo "error: chapter number "$2" for given manga does not exist. exiting"
+		rm /tmp/manga /tmp/manga2
+		exit
+	else
+		echo "warning: no "$ext"s found.  trying jpgs..."
+		$0 $1 $2 "$path" "jpg"
+		exit
+	fi
 fi
 chg=$ch
 len=${#chg}
@@ -68,8 +75,8 @@ while read pg; do
 	curl --silent $bse$ch"/"$pg"."$ext > "$full"
 	((ch+=1))
 done </tmp/manga2
-echo "all "$mx" pages saved in directory \""$path$chg"\"."
-if [ "$4" != "jpg" ]; then
+echo "all "$mx" "$ext" pages saved in directory \""$path$chg"\"."
+if [ "$ext" != "jpg" ]; then
 	$0 $1 $2 "$path" "jpg"
 	rm /tmp/manga /tmp/manga2
 fi
