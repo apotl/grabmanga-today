@@ -70,7 +70,7 @@ while read pg; do
 done </tmp/manga2
 echo "all "$mx" pages saved in directory \""$path$chg"\"."
 if [ "$4" != "jpg" ]; then
-	$0 $1 $2 $path "jpg"
+	$0 $1 $2 "$path" "jpg"
 	rm /tmp/manga /tmp/manga2
 fi
 exit
