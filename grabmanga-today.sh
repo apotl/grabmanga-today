@@ -27,7 +27,7 @@ if [[ ${path: -1} != "/" ]]; then
 	echo "error: path to download chapters to is invalid (does the path end with \"/\"?). Exiting"
 	exit
 fi
-bse="http://manga-joy.com/wp-content/manga/"$1"/"
+bse="http://funmanga.com/uploads/chapters/"$1"/"
 ch=$2
 ((ch-=1))
 curl --silent $bse$ch"/" | grep href.*/$ch/.*\.$ext > /tmp/manga
